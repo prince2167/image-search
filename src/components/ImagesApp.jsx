@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchBox from "./SearchBox";
 import Images from "./Images";
+import Info from "./Info";
 
 const ImagesApp = () => {
   const [images, setImages] = useState([]);
@@ -14,6 +15,7 @@ const ImagesApp = () => {
   if (error) alert("Something went wrong");
   return (
     <div>
+      <Info />
       <SearchBox
         displayImages={displayImages}
         setIsLoading={setIsLoading}
