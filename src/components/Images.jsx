@@ -28,27 +28,16 @@ const Images = ({ images }) => {
     fabric.Image.fromURL(
       imageUrl,
       (img) => {
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-
-        const imgAspectRatio = img.width / img.height;
-        const canvasAspectRatio = canvasWidth / canvasHeight;
-
-        let newWidth, newHeight;
-
-        if (imgAspectRatio > canvasAspectRatio) {
-          newWidth = canvasWidth;
-          newHeight = canvasWidth / imgAspectRatio;
-        } else {
-          newHeight = canvasHeight;
-          newWidth = canvasHeight * imgAspectRatio;
-        }
+        const scaleFactor = Math.min(
+          canvas.width / img.width,
+          canvas.height / img.height
+        );
 
         img.set({
-          left: (canvasWidth - newWidth) / 2,
-          top: (canvasHeight - newHeight) / 2,
-          width: newWidth,
-          height: newHeight,
+          left: 0,
+          top: 0,
+          scaleX: scaleFactor,
+          scaleY: scaleFactor,
           selectable: false,
         });
 
